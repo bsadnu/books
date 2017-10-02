@@ -1,0 +1,17 @@
+{
+	"name": "bsadnu/books",
+    "description": "Books&Authors App",
+    "keywords": ["Books", "Authors"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "twig/twig": "~1.0",
+		"fzaninotto/faker": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+             "Core\\": "Core/",
+             "App\\": "App/"
+        }
+    }
+}
