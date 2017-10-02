@@ -42,3 +42,33 @@ ALTER TABLE `author_book`
 	ADD CONSTRAINT `author_book_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 	ADD CONSTRAINT `author_book_book_id_foreign` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ```
+
+## SQL query: get all books made by exactly 3 authors
+
+```
+SELECT b.*, authors_number
+FROM books b
+JOIN (
+	SELECT 
+		*, count(*) AS authors_number
+	FROM author_book
+	GROUP BY book_id
+	HAVING count(*) = 3
+) ab on b.id = ab.book_id
+ORDER BY b.id
+```
+
+## SQL query: get all books made by less than 3 authors
+
+```
+SELECT b.*, authors_number
+FROM books b
+JOIN (
+	SELECT 
+		*, count(*) AS authors_number
+	FROM author_book
+	GROUP BY book_id
+	HAVING count(*) < 3
+) ab on b.id = ab.book_id
+ORDER BY b.id
+```
