@@ -49,8 +49,7 @@ ALTER TABLE `author_book`
 SELECT b.*, authors_number
 FROM books b
 JOIN (
-	SELECT 
-		*, count(*) AS authors_number
+	SELECT *, count(*) AS authors_number
 	FROM author_book
 	GROUP BY book_id
 	HAVING count(*) = 3
@@ -64,8 +63,7 @@ ORDER BY b.id
 SELECT b.*, authors_number
 FROM books b
 JOIN (
-	SELECT 
-		*, count(*) AS authors_number
+	SELECT *, count(*) AS authors_number
 	FROM author_book
 	GROUP BY book_id
 	HAVING count(*) < 3
